@@ -143,6 +143,7 @@ public class RavenEliza {
         }
     }
 
+    //method to change the first char in responce to Uppercase
     public static String upperCaseFirst(String value) {
 
         char[] array = value.toCharArray();
@@ -150,13 +151,17 @@ public class RavenEliza {
         return new String(array);
     }
 
+    //method to take converted input and add it to Raven's response
     public static String response(ArrayList<String> words, String input) {
 
         String response = "";
+        //take each word from the input ArrayList and put them all together in a String
         for (String word : words) {
             response += word + " ";
         }
+        //remove the space behind the last word
         response = response.substring(0, response.length()-1);
+        //take the response 'with Uppercase first letter' and concatenate it with a Raven mood response
         response = upperCaseFirst(response) + ". " + moodCounter(words);
 
 

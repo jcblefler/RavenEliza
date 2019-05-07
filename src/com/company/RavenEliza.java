@@ -7,9 +7,17 @@ import java.util.Scanner;
 
 public class RavenEliza {
 
+    private int moodMeter = 0;
 
+    public int getMoodMeter() {
+        return moodMeter;
+    }
 
-    public static String positiveHedge() {
+    public void setMoodMeter(int moodMeter) {
+        this.moodMeter = moodMeter;
+    }
+
+    public String positiveHedge() {
         Random random = new Random();
 
         ArrayList<String> positive = new ArrayList<String>();
@@ -26,7 +34,7 @@ public class RavenEliza {
 
     }
 
-    public static String negativeHedge() {
+    public String negativeHedge() {
         Random random = new Random();
 
         ArrayList<String> negative = new ArrayList<String>();
@@ -43,7 +51,7 @@ public class RavenEliza {
 
     }
 
-    public static String neutralHedge() {
+    public String neutralHedge() {
         Random random = new Random();
 
         ArrayList<String> neutral = new ArrayList<String>();
@@ -60,7 +68,7 @@ public class RavenEliza {
 
 
     //takes in what the user inputs and runs the input through the other methods
-    public static String question(String input){
+    public String question(String input){
 
         //returns the generated response
         return response(wordReplacer(input), input);
@@ -68,7 +76,7 @@ public class RavenEliza {
     }
 
     //method to change (I, me, my, am) into (you, you, your, are)
-    public static ArrayList<String> wordReplacer(String input) {
+    public ArrayList<String> wordReplacer(String input) {
         //create an ArrayList to put the input string into
         ArrayList<String> words = new ArrayList<String>();
 
@@ -99,8 +107,14 @@ public class RavenEliza {
 
     }
 
+    public int overallMood( int n){
+
+        setMoodMeter(getMoodMeter() + n);
+        return getMoodMeter();
+    }
+
     //method to check if user input matches words in positive or negative Arrays
-    public static String moodCounter(ArrayList<String> words) {
+    public String moodCounter(ArrayList<String> words) {
         //positive Array
         String[] positive = {"good", "glad", "happy", "relaxed", "accomplished", "alert", "creative"};
         //negative Array
@@ -117,6 +131,7 @@ public class RavenEliza {
                 //if word matches a word in the positive Array then add one to positive counter
                 if (word.equalsIgnoreCase(p)) {
                     positiveCounter++;
+                    overallMood(1);
                 }
             }
             //Check if word matches any word in negative Array
@@ -124,6 +139,7 @@ public class RavenEliza {
                 //if word matches a word in the negative Array then add one to negative counter
                 if (word.equalsIgnoreCase(n)) {
                     negativeCounter++;
+                    overallMood(-1);
                 }
             }
         }
@@ -143,8 +159,8 @@ public class RavenEliza {
         }
     }
 
-    //method to change the first char in responce to Uppercase
-    public static String upperCaseFirst(String value) {
+    //method to change the first char in response to Uppercase
+    public String upperCaseFirst(String value) {
 
         char[] array = value.toCharArray();
         array[0] = Character.toUpperCase(array[0]);
@@ -152,7 +168,7 @@ public class RavenEliza {
     }
 
     //method to take converted input and add it to Raven's response
-    public static String response(ArrayList<String> words, String input) {
+    public String response(ArrayList<String> words, String input) {
 
         String response = "";
         //take each word from the input ArrayList and put them all together in a String
@@ -175,7 +191,7 @@ public class RavenEliza {
     }
 
     //method for past inputs and responses
-    public static String chatHistory(String input, String response) {
+    public String chatHistory(String input, String response) {
 
         String history = "The user said: " + input + "\n" + "Raven responded: " + response + "\n\n";
 

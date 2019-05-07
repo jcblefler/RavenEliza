@@ -7,6 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        RavenEliza eliza = new RavenEliza();
+
         String input = "";
         ArrayList<String> chatHistory = new ArrayList<>();
 
@@ -22,7 +24,7 @@ public class Main {
             //if input doesn't equal (q) then run through methods to convert it to Raven's Response
             //save input/response in the chatHistory ArrayList
             if (!input.equalsIgnoreCase("q")) {
-                chatHistory.add(RavenEliza.question(input));
+                chatHistory.add(eliza.question(input));
             }
 
         }
@@ -30,6 +32,14 @@ public class Main {
         System.out.println("\nChat History:\n");
         for (String history : chatHistory){
             System.out.println(history);
+        }
+
+        if (eliza.overallMood(0) > 0){
+            System.out.println("You are an overall positive person.");
+        } else if (eliza.overallMood(0) < 0) {
+            System.out.println("You are an overall negative person.");
+        } else {
+            System.out.println("You have no over mood.");
         }
     }
 }

@@ -8,9 +8,13 @@ public class Main {
     public static void main(String[] args) {
 
         RavenEliza eliza = new RavenEliza();
+        Invoice invoice = new Invoice();
 
         String input = "";
         ArrayList<String> chatHistory = new ArrayList<>();
+
+
+        invoice.inputUser();
 
         System.out.print("Good day. What is your problem?\n");
 
@@ -28,6 +32,10 @@ public class Main {
             }
 
         }
+
+        invoice.displayInvoice(chatHistory.size());
+
+
         //after user input (q) display all of the past inputs/responses
         System.out.println("\nChat History:\n");
         for (String history : chatHistory){

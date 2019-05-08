@@ -9,6 +9,10 @@ public class RavenEliza {
 
     private int moodMeter = 0;
 
+
+
+
+
     public int getMoodMeter() {
         return moodMeter;
     }

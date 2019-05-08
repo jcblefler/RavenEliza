@@ -11,6 +11,7 @@ public class Main {
         Invoice invoice = new Invoice();
 
         String input = "";
+        int session = 0;
         ArrayList<String> chatHistory = new ArrayList<>();
 
 
@@ -29,11 +30,12 @@ public class Main {
             //save input/response in the chatHistory ArrayList
             if (!input.equalsIgnoreCase("q")) {
                 chatHistory.add(eliza.question(input));
+                session = 1;
             }
 
         }
 
-        invoice.displayInvoice(chatHistory.size());
+        invoice.displayInvoice(chatHistory.size(), session);
 
 
         //after user input (q) display all of the past inputs/responses

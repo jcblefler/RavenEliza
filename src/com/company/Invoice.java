@@ -10,6 +10,7 @@ public class Invoice {
     private String userNumber;
 
     private double sessionCost;
+    private double sessionTotal;
     private double questionCost;
     private double questionAsked;
 
@@ -54,6 +55,14 @@ public class Invoice {
         this.sessionCost = sessionCost;
     }
 
+    public double getSessionTotal() {
+        return sessionTotal;
+    }
+
+    public void setSessionTotal(double sessionTotal) {
+        this.sessionTotal = sessionTotal;
+    }
+
     public double getQuestionCost() {
         return questionCost;
     }
@@ -82,7 +91,7 @@ public class Invoice {
         setUserNumber(scanner.nextLine());
     }
 
-    public void displayInvoice(int size){
+    public void displayInvoice(int size, int session){
 
         DecimalFormat df = new DecimalFormat("0.00");
         DecimalFormat dfz = new DecimalFormat("#");
@@ -90,10 +99,11 @@ public class Invoice {
         setQuestionAsked(size);
         setQuestionCost(.35);
         setSessionCost(100.00);
+        setSessionTotal(getSessionCost() * session);
 
 
         double questionTotal = getQuestionAsked() * getQuestionCost();
-        double totalCost = questionTotal + getSessionCost();
+        double totalCost = questionTotal + getSessionTotal();
 
         System.out.println("Raven's Invoice");
         System.out.println("To:");
@@ -102,7 +112,7 @@ public class Invoice {
         System.out.println(getUserNumber() + "\n");
         System.out.println("Items:");
         System.out.println("Quantity | Description | Price | Total");
-        System.out.println("\t1 \t\t Session \t$" + df.format(getSessionCost()) + " $" + df.format(getSessionCost()));
+        System.out.println("\t" + session + "\t\t Session \t$" + df.format(getSessionCost()) + " $" + df.format(getSessionTotal()));
         System.out.println("\t" + dfz.format(getQuestionAsked()) + " \t\tQuestions \t$" + df.format(getQuestionCost()) + "\t$" + df.format(questionTotal));
         System.out.println("\nTotal Due: $" + df.format(totalCost));
         System.out.println("\nThank you for doing business with Raven.\n");
